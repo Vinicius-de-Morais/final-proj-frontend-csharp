@@ -7,6 +7,7 @@ import LoginScreen from "./pages/login";
 import AdmLoginScreen from "./pages/Adm/admLogin";
 import AdmPainelScreen from "./pages/Adm/admPainel";
 import AdmOverView from "./pages/Adm/PainelForm/admOverView";
+import CharacterInfo from "./pages/characterInfo";
 
 
 
@@ -14,7 +15,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" extat element={<Navigate to="/home" />} />
         <Route path="/home" extat element={<HomeScreen />} />
+        <Route path="/character" extat element={<CharacterInfo />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/adm" element={<AdmLoginScreen />} />
         <Route path="/painel" extat element={<AdmPainelScreen />} />
