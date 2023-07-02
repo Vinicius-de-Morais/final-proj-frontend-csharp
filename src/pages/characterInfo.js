@@ -2,6 +2,7 @@ import {
   faArrowLeft,
   faMinus,
   faPlus,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
@@ -16,6 +17,7 @@ const CharacterInfo = () => {
   const { state } = location;
   const {
     id,
+    userId,
     name,
     level,
     race,
@@ -41,7 +43,7 @@ const CharacterInfo = () => {
 
   const finalObj = {
     id: id,
-    userId: 1,
+    userId: userId,
     name: name,
     level: level,
     raceId: race.id,
@@ -77,10 +79,17 @@ const CharacterInfo = () => {
   const [itemArray, setItemArray] = useState(equipment);
 
   const addItem = () => {
-    const item = {name: itemName, quantity: itemQtd}
-    console.log(item);
+    const item = { name: itemName, quantity: itemQtd };
     setItemArray([...itemArray, item]);
+  };
+
+  const deleteItem = (equip) => {
+    const id = equip.id;
+    const itemArr = itemArray;
+
+    setItemArray(itemArr.filter(eq => eq.name != equip.name))
   }
+
   return (
     <>
       <div className="character-sheet card d-flex rounded-0 min-vh-100">
@@ -90,7 +99,7 @@ const CharacterInfo = () => {
               icon={faArrowLeft}
               size="xl"
               className="w-auto"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/home", { state: finalObj })}
             />
           </div>
           <h2 className="card-title mx-auto">Ficha</h2>
@@ -98,7 +107,7 @@ const CharacterInfo = () => {
 
         <div className="card-body align-items-start">
           <div className="d-flex flex-wrap">
-            <div class="d-flex flex-column p-2 flex-fill m-3 w-auto border border-dark border-2 rounded">
+            <div className="d-flex flex-column p-2 flex-fill m-3 w-auto border border-dark border-2 rounded">
               <span className="fs-3">{name}</span>
               <span>Nome do Personagem</span>
             </div>
@@ -207,13 +216,28 @@ const CharacterInfo = () => {
             <div className="container col-3 d-flex flex-fill border border-dark border-2 rounded justify-content-around ms-1 me-1">
               <Col>
                 <h3>Equipamentos</h3>
-                <ul className="list-group">
+                <Container>
+                <div className="d-flex flex-row ms-1 me-1 mb-1 mt-1 justify-content-start">
                   {itemArray.map((equip) => (
-                    <li key={equip.id? equip.id : equip.name} className="list-group-item mb-1">
-                      <span>{equip.name}</span> <div class="vr ms-1 me-1"></div> <span> x {equip.quantity}</span>
-                    </li>
+                    <div
+                      key={equip.id ? equip.id : equip.name}
+                      className="p-1 w-auto border border-primary rounded ms-1 me-1 mb-1 mt-1"
+                    >
+                      <span>{equip.name}</span> <div class="vr ms-1 me-1"></div>{" "}
+                      <span> x {equip.quantity}</span>
+                      <FontAwesomeIcon
+                        role="button"
+                        icon={faTrash}
+                        size="xs"
+                        id={equip.id}
+                        key={equip.id}
+                        onClick={() => deleteItem(equip)}
+                      />
+                    </div>
                   ))}
-                </ul>
+                </div>
+
+                </Container>
                 <div className=" d-flex">
                   <Form.Control
                     className="flex-grow-1 me-2"

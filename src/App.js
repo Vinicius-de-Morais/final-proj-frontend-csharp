@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" extat element={<Navigate to="/home" />} />
+        <Route path="/" extat element={<Navigate to="/login" />} />
         <Route path="/home" extat element={<HomeScreen />} />
         <Route path="/character" extat element={<CharacterInfo />} />
         <Route path="/login" element={<LoginScreen />} />

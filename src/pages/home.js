@@ -13,7 +13,7 @@ import connection from "../Connection";
 import ShowMessage from "../component/showMessage";
 import Swal from "sweetalert2";
 import CharacterList from "../component/characterList";
-import {useNavigate}  from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -26,6 +26,12 @@ const HomePage = () => {
   const [SpellsArray, SetSpellsArray] = useState([]);
   const [SkillsArray, SetSkillsArray] = useState([]);
 
+  // user info
+  const location = useLocation();
+  const { state } = location;
+  const { userId } = state;
+
+  // para registro
   const [Class, SetClass] = useState({});
   const [Race, SetRace] = useState({});
   const [Spell, SetSpell] = useState({});
@@ -33,12 +39,12 @@ const HomePage = () => {
   const finalObj = {
     name: characterName,
     level: 1,
-    userId: 1,
+    userId: userId,
     raceId: Race.id,
     ClassId: Class.id,
     Skills: [{ level: 1, CadSkillId: Skill.id }],
     Spells: [{ level: 1, CadSpellId: Spell.id }],
-    Notes: ""
+    Notes: "",
   };
 
   const handleModalOpen = () => {
@@ -59,7 +65,7 @@ const HomePage = () => {
       const response = await connection.post("/api/Characters", finalObj);
       if (response.status === 201) {
         Swal.hideLoading();
-        Swal.fire("Personagem Cadastrado!", "", "success");
+        Swal.fire("Personagem Cadastrado!", "", "success").then(() => document.location.reload());
         handleModalClose();
       } else {
         Swal.hideLoading();
@@ -219,19 +225,18 @@ const HomePage = () => {
       );
     });
   };
-  
+
   const navigate = useNavigate();
   const openCharacter = async (event) => {
-    const {id} = event.currentTarget;
+    const { id } = event.currentTarget;
     const characterId = id.split("-")[1];
-    
-    try{
+
+    try {
       Swal.showLoading();
-      const response = await connection.get("/api/Characters/"+characterId);
+      const response = await connection.get("/api/Characters/" + characterId);
       if (response.status === 200) {
         Swal.close();
-        navigate("/character", {state: response.data})
-        //return <Navigate to={`${encodeURIComponent(JSON.stringify(response.data))}`} />;
+        navigate("/character", { state: response.data });
       } else {
         Swal.close();
         Swal.fire(
@@ -240,7 +245,7 @@ const HomePage = () => {
           "error"
         );
       }
-    }catch(Error){
+    } catch (Error) {
       Swal.hideLoading();
       Swal.fire(
         "Ocorreu um erro ao salvar!",
@@ -248,47 +253,84 @@ const HomePage = () => {
         "error"
       );
     }
+  };
 
-  }
-
-  document.body.style = "background: #293241;";
+  document.body.style = "background: #ffffff;";
   return (
     <div style={{ backgroundColor: "#293241", padding: "" }}>
-      <Container className="mt-0">
-        <header
-          style={{
-            backgroundColor: "#3d5a80ff",
-            padding: "20px",
-            color: "#ffffff",
-          }}
-        >
-          <h1>Criar ficha de RPG</h1>
-        </header>
+      <header
+        className="d-flex align-items-center"
+        style={{
+          backgroundColor: "#1d1f63",
+          padding: "20px",
+          color: "#ffffff",
+        }}
+      >
+        <img
+          src="../I_AM_MISTA_KIN_DICE.png"
+          alt="dado de gravata"
+          style={{ width: 60, height: 60 }}
+        />
+        <h1 className="mx-auto">Criar ficha de RPG</h1>
+      </header>
 
-        <div style={{ backgroundColor: "#ffffff", padding: "20px" }}className="d-flex">
-          <div className="d-flex w-auto">
-            <Card
-              bg="dark"
-              text="white"
-              className=""
-              style={{ maxWidth: "400px", margin: "0 auto", maxHeight: "150px"}}
-            >
-              <Card.Body>
-                <Card.Title>Bem vindo</Card.Title>
-                <Card.Text>Crie seu personagem de maneira facil.</Card.Text>
-                <Button variant="primary" onClick={handleModalOpen}>
-                  Adicionar um novo personagem
-                </Button>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className="flex-fill">
-            <Container className="">
-              <CharacterList onClick={openCharacter}></CharacterList>
-            </Container>
-          </div>
+      <div
+        style={{ backgroundColor: "#ffffff", padding: "20px" }}
+        className="d-flex"
+      >
+        <div className="d-flex flex-column w-auto">
+          <Card
+            bg="dark"
+            text="white"
+            className=""
+            style={{ maxWidth: "400px", margin: "0 auto", maxHeight: "150px" }}
+          >
+            <Card.Body>
+              <Card.Title>Bem vindo</Card.Title>
+              <Card.Text>Crie seu personagem de maneira facil.</Card.Text>
+              <Button
+                variant="primary"
+                onClick={handleModalOpen}
+                style={{ backgroundColor: "#404189", borderColor: "#404189" }}
+              >
+                Adicionar um novo personagem
+              </Button>
+            </Card.Body>
+          </Card>
+          <Card
+            bg="dark"
+            text="white"
+            className="mt-2"
+            style={{ maxWidth: "300px", margin: "0 auto", maxHeight: "150px" }}
+          >
+            <Card.Body>
+              <Card.Title>Dicas</Card.Title>
+              <Card.Text>
+                Converse com seu mestre e descubra como irá funcionar a
+                distribuição dos pontos
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
-      </Container>
+
+        <div className="flex-fill">
+          <Container className="">
+            <CharacterList onClick={openCharacter} userId={userId}></CharacterList>
+          </Container>
+        </div>
+      </div>
+
+      <footer
+        className="fixed-bottom d-flex align-items-center"
+        style={{
+          backgroundColor: "#1d1f63",
+          padding: "10px",
+          color: "#ffffff",
+          fontSize: 10,
+        }}
+      >
+        © 2023 - Todos os direitos reservados.
+      </footer>
 
       {/* Modal de Cadastro */}
       <Container className="mt-5">
@@ -392,7 +434,11 @@ const HomePage = () => {
             <Button variant="secondary" onClick={handleModalClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleAddCharacter}>
+            <Button
+              variant="primary"
+              onClick={handleAddCharacter}
+              style={{ backgroundColor: "#404189", borderColor: "#404189" }}
+            >
               Adicionar Personagem
             </Button>
           </Modal.Footer>

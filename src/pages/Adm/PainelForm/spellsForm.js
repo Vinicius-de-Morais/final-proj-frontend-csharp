@@ -59,7 +59,7 @@ const SpellsForm = () => {
 
     if (result) {
       try {
-        const response = RequestMaker.delete("/api/CadSpells/", id);
+        const response = await RequestMaker.delete("/api/CadSpells/", id);
 
         if (response) {
           await loadSpells();
@@ -76,7 +76,7 @@ const SpellsForm = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{color: "white"}}>
         <Container
           className="col-12 border border-secondary rounded mb-3"
           direction="horizontal"
@@ -87,7 +87,7 @@ const SpellsForm = () => {
           >
             {SpellsArray.map((value) => (
               <div
-                className="p-1 w-auto border border-primary rounded ms-1 me-1 mb-1 mt-1"
+                className="p-1 w-auto border rounded ms-1 me-1 mb-1 mt-1"
                 >
                 <span className="me-2 fs-5 font-monospace"
                   onClick={() => showModal(value)}
@@ -127,7 +127,7 @@ const SpellsForm = () => {
             onChange={(e) => SetSpellDescription(e.target.value)}
           />
           <div className="border-bottom" />
-          <Button className="" onClick={insertSpell}>
+          <Button className="" onClick={insertSpell} style={{ backgroundColor: "#404189", borderColor: "#404189" }}>
             Enviar
           </Button>
         </Stack>

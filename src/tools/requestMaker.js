@@ -30,7 +30,7 @@ RequestMaker.insert = async (url, data) => {
 RequestMaker.delete = async (url, id) => {
   try {
     Swal.showLoading();
-    const response = connection.delete(url + id);
+    const response = await connection.delete(url + id);
     console.log(response);
     if (response.status === 200 || response.status === 204) {
       Swal.hideLoading();

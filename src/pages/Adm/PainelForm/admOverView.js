@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CharacterList from "../../../component/characterList";
 
 
 const AdmOverView = () => {
@@ -7,7 +8,7 @@ const AdmOverView = () => {
 
   return (
     <div>
-      AQUI VAI SER UMA OVERVIEW
+      <CharacterList onClick={(event) => console.log(event)} userId={"all"}/>
     </div>
   );
 };

@@ -33,7 +33,7 @@ const AbilityScoreForm = () => {
         throw new Error("O nome deve conter algum valor");
       }
 
-      const created = RequestMaker.insert("/api/CadAbilityScores", {
+      const created = await RequestMaker.insert("/api/CadAbilityScores", {
         name: atributeName,
       });
       if (created) {
@@ -68,7 +68,7 @@ const AbilityScoreForm = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ color: "white" }}>
         <Container
           className="col-12 border border-secondary rounded mb-3"
           direction="horizontal"
@@ -78,7 +78,7 @@ const AbilityScoreForm = () => {
             className="d-flex flex-row ms-1 me-1 mb-1 mt-1 justify-content-start"
           >
             {atributesArray.map((value) => (
-              <div className="p-1 w-auto border border-primary rounded ms-1 me-1 mb-1 mt-1">
+              <div className="p-1 w-auto border rounded ms-1 me-1 mb-1 mt-1">
                 <span className="me-2 fs-5 font-monospace">{value.name}</span>
                 <FontAwesomeIcon
                   role="button"
@@ -104,7 +104,11 @@ const AbilityScoreForm = () => {
             onChange={(e) => SetAtributeName(e.target.value)}
           />
           <div className="vr" />
-          <Button className="" onClick={insertAbility}>
+          <Button
+            className=""
+            onClick={insertAbility}
+            style={{ backgroundColor: "#404189", borderColor: "#404189" }}
+          >
             Enviar
           </Button>
         </Stack>

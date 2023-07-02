@@ -37,7 +37,7 @@ const SkillsForm = () => {
         throw new Error("A descrição deve conter algum valor");
       }
 
-      const response = RequestMaker.insert("/api/CadSkills", {
+      const response = await RequestMaker.insert("/api/CadSkills", {
         name: SkillName,
         description: SkillDescription,
       });
@@ -76,7 +76,7 @@ const SkillsForm = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{color: "white"}}>
         <Container
           className="col-12 border border-secondary rounded mb-3"
           direction="horizontal"
@@ -87,7 +87,7 @@ const SkillsForm = () => {
           >
             {SkillsArray.map((value) => (
               <div
-                className="p-1 w-auto border border-primary rounded ms-1 me-1 mb-1 mt-1"
+                className="p-1 w-auto border rounded ms-1 me-1 mb-1 mt-1"
                 >
                 <span className="me-2 fs-5 font-monospace"
                   onClick={() => showModal(value)}
@@ -127,7 +127,7 @@ const SkillsForm = () => {
             onChange={(e) => SetSkillDescription(e.target.value)}
           />
           <div className="border-bottom" />
-          <Button className="" onClick={insertSkill}>
+          <Button className="" onClick={insertSkill} style={{ backgroundColor: "#404189", borderColor: "#404189" }}>
             Enviar
           </Button>
         </Stack>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { Form, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const AdmLoginScreen = () => {
@@ -13,6 +15,8 @@ const AdmLoginScreen = () => {
         
       if(username == "adm" && password=="adm123"){
         navigate('/painel')
+      } else {
+        Swal.fire("Usuario ou senha invalidos", "", "error");
       }
 
     } catch (error) {
@@ -20,32 +24,49 @@ const AdmLoginScreen = () => {
     }
   };
 
+  document.body.style = "background: #1d1f63;";
   return (
-    <div>
-      <h1>Login</h1>
-      <form>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
+    <div className="container" style={{ color: "white"}}>
+      <Row className="d-flex flex-column align-items-center">
+        <img
+          src="../I_AM_MISTA_KIN_DICE.png"
+          alt="dado de gravata"
+          style={{ width: 220, height: 220 }}
+        />
+        <h1 style={{ fontFamily: "Caprasimo", fontSize: 50 }}>Mr. Dice</h1>
+      </Row>
+      <h2>ADM Login</h2>
+      <Form>
+        <Form.Group controlId="username">
+          <Form.Label>Nome de Usuário:</Form.Label>
+          <Form.Control
+            style={{ width: "200px" }}
             type="text"
-            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className="mx-auto"
           />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Senha:</Form.Label>
+          <Form.Control
+            style={{ width: "200px" }}
             type="password"
-            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="mx-auto"
           />
-        </div>
-        <button type="button" onClick={handleLogin}>
+        </Form.Group>
+        <Button
+          variant="primary"
+          type="button"
+          className="mt-2"
+          onClick={handleLogin}
+          style={{ backgroundColor: "#404189", borderColor: "#404189" }}
+        >
           Login
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 };
