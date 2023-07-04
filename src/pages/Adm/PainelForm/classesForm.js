@@ -71,7 +71,7 @@ const ClassesForm = () => {
 
     if (result) {
       try {
-        const response = true;
+        const response = await RequestMaker.delete("/api/Classes/", id);
 
         if (response) {
           await loadClasses();
@@ -113,9 +113,8 @@ const ClassesForm = () => {
             {ClassesArray.map((value) => (
               <div
                 className="p-1 w-auto border rounded ms-1 me-1 mb-1 mt-1"
-                onClick={() => showModal(value)}
               >
-                <span className="me-2 fs-5 font-monospace">{value.name}</span>
+                <span className="me-2 fs-5 font-monospace" onClick={() => showModal(value)}>{value.name}</span>
                 <FontAwesomeIcon
                   role="button"
                   icon={faTrash}

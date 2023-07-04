@@ -13,7 +13,7 @@ import connection from "../Connection";
 import ShowMessage from "../component/showMessage";
 import Swal from "sweetalert2";
 import CharacterList from "../component/characterList";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -26,10 +26,17 @@ const HomePage = () => {
   const [SpellsArray, SetSpellsArray] = useState([]);
   const [SkillsArray, SetSkillsArray] = useState([]);
 
+  
   // user info
   const location = useLocation();
   const { state } = location;
-  const { userId } = state;
+  let userId = "";
+  console.log(typeof state == typeof null)
+  if ( state ==  null) {
+    window.location.href = "/login";
+  }else{
+    userId = state.userId;
+  }
 
   // para registro
   const [Class, SetClass] = useState({});
@@ -65,7 +72,9 @@ const HomePage = () => {
       const response = await connection.post("/api/Characters", finalObj);
       if (response.status === 201) {
         Swal.hideLoading();
-        Swal.fire("Personagem Cadastrado!", "", "success").then(() => document.location.reload());
+        Swal.fire("Personagem Cadastrado!", "", "success").then(() =>
+          document.location.reload()
+        );
         handleModalClose();
       } else {
         Swal.hideLoading();
@@ -315,7 +324,10 @@ const HomePage = () => {
 
         <div className="flex-fill">
           <Container className="">
-            <CharacterList onClick={openCharacter} userId={userId}></CharacterList>
+            <CharacterList
+              onClick={openCharacter}
+              userId={userId}
+            ></CharacterList>
           </Container>
         </div>
       </div>

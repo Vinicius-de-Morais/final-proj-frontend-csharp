@@ -2,18 +2,24 @@ import React, { useState } from "react";
 import { Form, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import connection from "../../Connection";
 
 
 const AdmLoginScreen = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const userObj = {
+    username: username,
+    password: password,
+    name: "ADMIN",
+  };
 
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-        
-      if(username == "adm" && password=="adm123"){
+      if(username == "ADM" && password=="adm123"){
+        const response = await connection.post("/api/login", userObj);
         navigate('/painel')
       } else {
         Swal.fire("Usuario ou senha invalidos", "", "error");

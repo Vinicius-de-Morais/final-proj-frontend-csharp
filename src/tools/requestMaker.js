@@ -71,7 +71,7 @@ RequestMaker.updateWithModal = async (objArray, type) => {
       }" className="d-block float-start">Descrição</label>
       <textarea
         size="sm"
-        rows="3"
+        rows="7"
         type="text"
         name="${objArray.description}"
         id="description-value"

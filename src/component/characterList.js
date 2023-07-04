@@ -95,13 +95,12 @@ const CharacterList = ({ onClick, userId }) => {
               <td>
                 <span className="fs-6 font-monospace">{value.level}</span>
               </td>
-              <td>
+              <td onClick={() => deleteCharacter(value.name, value.id)}>
                 <FontAwesomeIcon
                   role="button"
                   icon={faTrash}
                   size="sm"
                   key={value.id}
-                  onClick={() => deleteCharacter(value.name, value.id)}
                 />
               </td>
             </tr>

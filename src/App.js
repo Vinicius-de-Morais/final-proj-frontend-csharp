@@ -18,7 +18,7 @@ function App() {
         <Route path="/" extat element={<Navigate to="/login" />} />
         <Route path="/home" extat element={<HomeScreen />} />
         <Route path="/character" extat element={<CharacterInfo />} />
-        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/login" exat element={<LoginScreen />} />
         <Route path="/adm" element={<AdmLoginScreen />} />
         <Route path="/painel" extat element={<AdmPainelScreen />} />
         <Route path="/admOverView" extat element={<AdmOverView />} />
