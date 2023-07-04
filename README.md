@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# final-proj-frontend-csharp
+Frontend do Projeto Final da Academia dotNet 6
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sobre
 
-## Available Scripts
+Este é o frontend para uma aplicação que cria e gerencia fichas de RPG. A ideia é torná-lo o mais customizável e simples possível, permitindo o cadastro de atributos, raças, classes, habilidades e magias de forma manual.
 
-In the project directory, you can run:
+O frontend consome os endpoints fornecidos pelo backend. A escolha do React como framework está relacionada à facilidade e experiência com o mesmo. O website possui duas partes: uma destinada aos administradores, onde é realizado o gerenciamento de personagens e o cadastro de pontos de habilidade, raças, classes, magias e habilidades.
 
-### `npm start`
+As bibliotecas utilizadas incluem o Axios para consumir os endpoints, devido à sua padronização, e o React Bootstrap para facilitar o desenvolvimento das páginas.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Aparência
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A paleta de cores foi inspirada no personagem "Mr. King Dice" do jogo "Cuphead". A tela de login é apresentada abaixo:
 
-### `npm test`
+![Tela de Login](https://github.com/Vinicius-de-Morais/final-proj-frontend-csharp/assets/83669073/cf89b9d9-16cd-459d-ac46-47492fd4c560)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para ter uma compreensão melhor do funcionamento do aplicativo, vídeos demonstrando o seu funcionamento estão disponíveis na pasta "/videos".
 
-### `npm run build`
+## Configuração
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para configurar o projeto, siga as etapas abaixo:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone este repositório: `git clone https://github.com/Vinicius-de-Morais/final-proj-frontend-csharp.git`
+2. Navegue até a pasta do projeto: `cd final-proj-frontend-csharp`
+3. Instale as dependências: `npm install`
+4. Execute o projeto: `npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Certifique-se de ter o Node.js e o npm instalados em sua máquina para executar o projeto.
 
-### `npm run eject`
+## Contribuição
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Contribuições são bem-vindas! Se você encontrar algum problema, tiver alguma sugestão ou quiser colaborar de alguma forma, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Licença
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este projeto está licenciado sob a [MIT License](LICENSE).
